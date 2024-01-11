@@ -11,5 +11,6 @@ Ez a WPF project egy szarvasmarha nyilvántartó szoftver, melyet egy kisebb mez
 
 Kép a programról (példa adatokkal):
 
+![Példa kép](example_image.png)
 
 Készítés dátuma: 2023 november - december
