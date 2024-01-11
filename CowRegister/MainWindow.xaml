@@ -1,0 +1,70 @@
+﻿<Window x:Class="CowRegister.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CowRegister"
+        mc:Ignorable="d"
+        Title="Bessie" Height="550" Width="1200" MinHeight="550" MinWidth="1200">
+    <Window.Resources>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#edb57e"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#edec7e"></Setter>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true" />
+                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="1.5"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#60fc8a">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="cattleView" Margin="10,10,10,10" Width="Auto" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" AlternationCount="2" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ENAR-szám" Width="130" DisplayMemberBinding="{Binding Path=Enar}"></GridViewColumn>
+                    <GridViewColumn Header="Marhalevél száma" Width="130" DisplayMemberBinding="{Binding Path=EarLetter, TargetNullValue='nincs hozzárendelve'}"></GridViewColumn>
+                    <GridViewColumn Header="Anyja ENAR-száma" Width="130" DisplayMemberBinding="{Binding Path=MotherEnar}"></GridViewColumn>
+                    <GridViewColumn Header="Születési dátum" Width="130" DisplayMemberBinding="{Binding Path=Birth, StringFormat=yyyy-MM-dd}"></GridViewColumn>
+                    <GridViewColumn Header="Neme" Width="60" DisplayMemberBinding="{Binding Path=Gender}"></GridViewColumn>
+                    <GridViewColumn Header="Fajtája/színe" Width="130" DisplayMemberBinding="{Binding Path=Breed}"></GridViewColumn>
+                    <GridViewColumn Header="Érkezés dátuma" Width="130" DisplayMemberBinding="{Binding Path=ArrivedStock, StringFormat=yyyy-MM-dd}"></GridViewColumn>
+                    <GridViewColumn Header="Tenyészet elhagyása" Width="130" DisplayMemberBinding="{Binding Path=AbandonedStock, StringFormat=yyyy-MM-dd, TargetNullValue='állományban'}"></GridViewColumn>
+                    <GridViewColumn Header="Megjegyzés" Width="130" DisplayMemberBinding="{Binding Path=NoteOfAbandon, TargetNullValue='-'}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnCreate" Content="Új marha felvétele" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="120" Click="btnCreate_Click"/>
+        <Button x:Name="btnUpdate" Content="Kiválasztott marha módosítása" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="170" Click="btnUpdate_Click"/>
+        <Button x:Name="btnDelete" Content="Kiválasztott marha törlése" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="160" Click="btnDelete_Click"/>
+        <Label x:Name="label1" Content="ENAR-szám keresés" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtSearch" TextWrapping="Wrap" Text="" Width="120" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top" TextChanged="txtSearch_TextChanged" MaxLength="15"/>
+        <Label x:Name="label" Content="Jelenlegi egyedszám" Margin="10,10,10,0" Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="16"/>
+        <Label x:Name="lblCount" Content="nem található" Margin="0,0,0,10" FontSize="20" FontWeight="Bold" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="btnBackup" Content="Biztonsági mentés" Margin="10,10,10,10" Grid.Row="1" Grid.RowSpan="1" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="170" Click="btnBackup_Click"/>
+        <Button x:Name="btnLoadData" Content="Mentés betöltése" Margin="10,10,10,10" Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="170" Click="btnLoadBackup_Click"/>
+
+    </Grid>
+</Window>

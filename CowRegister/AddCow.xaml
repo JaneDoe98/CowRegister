@@ -1,0 +1,52 @@
+﻿<Window x:Class="CowRegister.AddCow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CowRegister"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Új Egyed Hozzáadása" Height="620" Width="400" Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="ENAR-szám:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label1" Content="Marhalevél száma:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label2" Content="Anyja ENAR-száma:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label3" Content="Születési ideje:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label4" Content="Neme:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label5" Content="Fajtája/színe:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <Label x:Name="label6" Content="Érkezés dátuma:" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"/>
+        <Label x:Name="label7" Content="Tenyészet elhagyása:" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"/>
+        <Label x:Name="label8" Content="Megjegyzés:" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+
+        <TextBox x:Name="txtEnar" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" Text="" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,0,20,0" PreviewTextInput="txtOnlyDigits_PreviewTextInput" PreviewKeyDown="txtNoSpace_PreviewKeyDown" CommandManager.PreviewExecuted="textBox_PreviewExecuted" BorderBrush="Black" BorderThickness="2" MaxLength="15"/>
+        <TextBox x:Name="txtEarLetter" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" Text="" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,0,20,0" PreviewTextInput="txtOnlyDigits_PreviewTextInput" PreviewKeyDown="txtNoSpace_PreviewKeyDown" CommandManager.PreviewExecuted="textBox_PreviewExecuted" BorderBrush="Black" MaxLength="15"/>
+        <TextBox x:Name="txtMotherEnar" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Text="" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,0,20,0" PreviewTextInput="txtOnlyDigits_PreviewTextInput" PreviewKeyDown="txtNoSpace_PreviewKeyDown" CommandManager.PreviewExecuted="textBox_PreviewExecuted" BorderBrush="Black" BorderThickness="2" MaxLength="15"/>
+        <DatePicker x:Name="dpBirth" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="20,0,20,0" FirstDayOfWeek="Monday" SelectedDate="{x:Static sys:DateTime.Now}" BorderBrush="Black" BorderThickness="2"/>
+        <ComboBox x:Name="cbGender" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="20,0,20,0" BorderBrush="Black" BorderThickness="2"/>
+        <ComboBox x:Name="cbBreed" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="20,0,20,0" BorderBrush="Black" BorderThickness="2"/>
+        <DatePicker x:Name="dpArrived" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Margin="20,10,20,0" FirstDayOfWeek="Monday" BorderBrush="Black" BorderThickness="2"/>
+        <CheckBox x:Name="cbSameAsBirth" Content="Egyező a születési dátummal"  Grid.Column="1" Grid.Row="6" Margin="20,10,20,5" VerticalAlignment="Bottom" Checked="cbSameAsBirth_Checked"/>
+        <DatePicker x:Name="dpAbandoned" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Margin="20,10,20,0" FirstDayOfWeek="Monday"/>
+        <CheckBox x:Name="cbIsInStock" Content="Jelenleg az állományban"  Grid.Column="1" Grid.Row="7" Margin="20,10,20,5" VerticalAlignment="Bottom" Checked="cbIsInStock_Checked" Unchecked="cbIsInStock_Unchecked"/>
+        <TextBox x:Name="txtNote" TextWrapping="Wrap" Grid.Column="1" Grid.Row="8" Text="" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20,0,20,0"/>
+        <Button x:Name="btnSave" Content="Mentés" Grid.Column="0" Grid.Row="9"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="67" Margin="0,0,30,0" Click="btnSave_Click"/>
+        <Button x:Name="btnCancel" Content="Mégse" Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Width="67" Click="btnCancel_Click"/>
+    </Grid>
+</Window>
